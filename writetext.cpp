@@ -8,15 +8,17 @@ int main( )
    short int a = -6730;
    float b = 68.123; 
    char c = 'J';
-   ofstream output {"abc.txt"};
+   ofstream output {"abc.bin"};
    
    if (output) 
    {
-	output<<a<<" "<<b<<" "<<c;//display data to console (i.e. as formatted chars)
+	output.write(reinterpret_cast<char*>(&a), sizeof(a));//display data to console (i.e. as formatted chars)
+	output.write(reinterpret_cast<char*>(&b), sizeof(b));
+	output.write(reinterpret_cast<char*>(&c), sizeof(c));
 }
 	else
 	
-   cout<<"Error opening abc.txt"<<endl;
+   cout<<"Error opening abc.bin"<<endl;
  
    return 0;
 }
